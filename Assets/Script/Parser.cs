@@ -73,7 +73,7 @@ public class TestCase {
 }
 
 
-public class main : MonoBehaviour {
+public class Parser : MonoBehaviour {
 
 	public int testPeriod = 5;
 
@@ -108,7 +108,8 @@ public class main : MonoBehaviour {
     private Transform bottom;
     private float altSize;
 
-
+    // Debug
+    int debugTestCaseNum = 79;
 
 
     void Start(){
@@ -190,7 +191,7 @@ public class main : MonoBehaviour {
 				}
 			}
 			p.allergy = data[21];
-			string otherPres = File.ReadAllText(Application.dataPath + "/Resources/" + difficulty + "/other/otherprescription_"+data[0]+".txt", Encoding.UTF8);
+			string otherPres = File.ReadAllText(Application.dataPath + "/Resources/" + difficulty + "/other/otherprescription_"+i+".txt", Encoding.UTF8);
 			string[] ops = otherPres.Split ("\n"[0]);
 			for(int n = 1; n < ops.Length-1; n++){
 				string[] temp = ops[n].Split ("	"[0]);
@@ -221,7 +222,7 @@ public class main : MonoBehaviour {
 		tcase.index = ranIndex;
         tcase.isBad = false;
         tcase.correct = false;
-		for (int i = 1; i < l.Length-1; i++) {//-1 because last line is empty
+		for (int i = 1; i < l.Length-1; i++) {          //-1 because last line is empty
 			string[] data = l [i].Split ("\t"[0]);
 			Medicine m = new Medicine ();
 			m.index = data[1];
@@ -283,15 +284,27 @@ public class main : MonoBehaviour {
  		sw.Dispose ();
 	}
 	int casePicker(int caseNum){
+
+        
 		System.Random random = new System.Random();
         int ranIndex = random.Next(caseNum);
         while (testedRecord.Exists(x => x.index==ranIndex))
 			ranIndex = random.Next(caseNum);
-        
         return ranIndex;
+        
+
+        /* Debug: pick case in order
+        int ret = debugTestCaseNum;
+        debugTestCaseNum++;
+        return ret;
+         */
+
+
+
+
     }
 
-	void patientProfileUpdate(Patient p){
+    void patientProfileUpdate(Patient p){
 		GameObject.Find("caseNo").GetComponent<Text>().text = "Case " + (testedRecord.Count+1);
 		GameObject.Find("pName").GetComponent<Text>().text = p.name;
 		GameObject.Find("date").GetComponent<Text>().text = "日期： " + p.date;

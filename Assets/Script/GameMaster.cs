@@ -12,7 +12,7 @@
 			platform
 		}
 
-		public main testCase;
+		public Parser testCase;
 		TestCase tcase;
 		private bool dispensing = false;
 		private GameObject[] medBags;
@@ -40,6 +40,9 @@
 		Text drugNameTxt;
 		Text drugAmountTxt;
 
+        // For debug, HintLine
+        HintLine hintLine;
+
 		void Start () {
 
             // Check controllers has InteractTouch.cs & InteractGrab.cs
@@ -66,9 +69,23 @@
 			leftHand.GetComponent<VRTK_ControllerEvents>().TouchpadTouchStart += new ControllerInteractionEventHandler(DoTouchpadTouchStart);
             leftHand.GetComponent<VRTK_ControllerEvents>().TouchpadTouchEnd += new ControllerInteractionEventHandler(DoTouchpadTouchEnd);
 			leftHand.GetComponent<VRTK_ControllerEvents>().TouchpadAxisChanged += new ControllerInteractionEventHandler(DoTouchpadAxisChanged);
-		}
 
-		private void DebugLogger(uint index, string action, GameObject target)
+            // For debug
+            hintLine = GetComponentInChildren<HintLine>();
+            hintLine.show = false;
+
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.F1))
+            {
+                hintLine.show = !hintLine.show;
+            }
+
+        }
+
+        private void DebugLogger(uint index, string action, GameObject target)
         {
             VRTK_Logger.Info("Controller on index '" + index + "' is " + action + " an object named " + target.name);
         }
@@ -307,6 +324,9 @@
 				medBags[i] = Instantiate(drugBagPrefab, bagGenratePos[0].position+genVec*i, Quaternion.identity);
 				medBags[i].transform.Find("Info").GetComponentInChildren<Text>().text = tcase.medList[i].medName + "\n數量: " + tcase.medList[i].amt + "\n位置: " + tcase.medList[i].position;
                 medBags[i].transform.localScale = Vector3.one * 0.75f;
+
+                // For debug, generate hitLine
+                if (hintLine != null) hintLine.GenrateLine(tcase.medList[i].index);
 			} 
 			
 			testCase.transform.parent.gameObject.SetActive(false);
@@ -338,6 +358,11 @@
 			foreach (GameObject g in medBags) {
 				Destroy(g);
 			}
+
+            // For debug, clear hint lines
+            if (hintLine != null) hintLine.ClearList();
+
+
 			testCase.showCheckpoint();
 		}
 		public string drugAmount() {

@@ -17,10 +17,10 @@ public class dataProcess : MonoBehaviour {
 	void Start(){
 		initMedList ();
         Debug.Log(getMedName ("361925"));
-		//getPosition ("benzBROMARONE 降尿酸 50mg/tab");
-	}
+        Debug.Log(getPosition ("361925"));
+    }
 
-	public void initMedList(){
+    public void initMedList(){
 		medPosList = new List<MatNoNamePair> ();
 		string s = File.ReadAllText(Application.dataPath + "/Resources/matNoNameList.txt");
 		string[] l = s.Split ("\n"[0]);
