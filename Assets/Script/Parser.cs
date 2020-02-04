@@ -109,7 +109,7 @@ public class Parser : MonoBehaviour {
     private float altSize;
 
     // Debug
-    int debugTestCaseNum = 79;
+    int debugTestCaseNum = 47;
 
 
     void Start(){
@@ -286,18 +286,18 @@ public class Parser : MonoBehaviour {
 	int casePicker(int caseNum){
 
         
-		System.Random random = new System.Random();
+		/*System.Random random = new System.Random();
         int ranIndex = random.Next(caseNum);
         while (testedRecord.Exists(x => x.index==ranIndex))
 			ranIndex = random.Next(caseNum);
-        return ranIndex;
+        return ranIndex;*/
         
 
-        /* Debug: pick case in order
+        //Debug: pick case in order
         int ret = debugTestCaseNum;
         debugTestCaseNum++;
         return ret;
-         */
+        
 
 
 
