@@ -19,30 +19,47 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4448967370833228}
+  - component: {fileID: 114329870243240600}
+  - component: {fileID: 114185294975766110}
+  - component: {fileID: 114471511627760278}
   m_Layer: 0
   m_Name: 488620
-  m_TagString: Untagged
+  m_TagString: MedModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1901052092202606
+--- !u!1 &1966882135116528
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4715509144220670}
-  - component: {fileID: 33743697161288786}
-  - component: {fileID: 23710644491514020}
+  - component: {fileID: 4057616204392450}
+  - component: {fileID: 33967699086932858}
+  - component: {fileID: 23984380295397088}
+  - component: {fileID: 65460988048356922}
   m_Layer: 0
-  m_Name: 20171108GOPHDRGPT22607
+  m_Name: 488620_m
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4057616204392450
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966882135116528}
+  m_LocalRotation: {x: 0.13339554, y: -0.6944104, z: -0.6944102, w: -0.13339552}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.2493744, y: 3.2493734, z: 3.381296}
+  m_Children: []
+  m_Father: {fileID: 4448967370833228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -201.74799}
 --- !u!4 &4448967370833228
 Transform:
   m_ObjectHideFlags: 1
@@ -50,32 +67,19 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1509230986603976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.06649995, y: 0.026099978, z: -0.059999943}
+  m_LocalScale: {x: 1.1939834, y: 1.1939836, z: 1.1939836}
   m_Children:
-  - {fileID: 4715509144220670}
+  - {fileID: 4057616204392450}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4715509144220670
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901052092202606}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.2483702, y: 3.2483692, z: 3.3802505}
-  m_Children: []
-  m_Father: {fileID: 4448967370833228}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23710644491514020
+--- !u!23 &23984380295397088
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901052092202606}
+  m_GameObject: {fileID: 1966882135116528}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,9 +88,9 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f11a1c1ec8d80bc43bb05d94dba33055, type: 3}
-  - {fileID: 2100002, guid: f11a1c1ec8d80bc43bb05d94dba33055, type: 3}
-  - {fileID: 2100004, guid: f11a1c1ec8d80bc43bb05d94dba33055, type: 3}
+  - {fileID: 2100000, guid: 4b2e6c6047b05c748b5cb5b6b696d370, type: 2}
+  - {fileID: 2100000, guid: ea0f31aef10aa9140970be18e48af43f, type: 2}
+  - {fileID: 2100000, guid: 68bf28028d6e6494ba14af69827c96c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,10 +110,87 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33743697161288786
+--- !u!33 &33967699086932858
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901052092202606}
-  m_Mesh: {fileID: 4300000, guid: f11a1c1ec8d80bc43bb05d94dba33055, type: 3}
+  m_GameObject: {fileID: 1966882135116528}
+  m_Mesh: {fileID: 4300000, guid: 75795740225994649a7cc43b426eecc4, type: 3}
+--- !u!65 &65460988048356922
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966882135116528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000001, y: 0.020000003, z: 0.032511707}
+  m_Center: {x: 0.000000059611864, y: -3.6739992e-10, z: 0.0065775802}
+--- !u!114 &114185294975766110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509230986603976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817f15b2a0426974bb4e88ef34aa22b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideControllerOnTouch: 0
+  hideDelayOnTouch: 0
+  hideControllerOnGrab: 1
+  hideDelayOnGrab: 0
+  hideControllerOnUse: 0
+  hideDelayOnUse: 0
+--- !u!114 &114329870243240600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509230986603976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08517e04830d6d44a13c5ea5f574181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  unhighlightOnDisable: 1
+  thickness: 0.6
+  customOutlineModels:
+  - {fileID: 1966882135116528}
+  customOutlineModelPaths: []
+  enableSubmeshHighlight: 0
+--- !u!114 &114471511627760278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509230986603976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  touchHighlightColor: {r: 1, g: 0.88235295, b: 0, a: 0}
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  usingState: 0
