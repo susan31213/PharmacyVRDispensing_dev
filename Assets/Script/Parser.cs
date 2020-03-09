@@ -75,9 +75,9 @@ public class TestCase {
 
 public class Parser : MonoBehaviour {
 
-	public int testPeriod = 5;
+	public int testPeriod = 5;      // Please change it in Inspector 'UICanvas-diff > UIControl'
 
-	int medProfileNum = 9;
+    int medProfileNum = 9;
 	int problemNum = 11;
     int maxMedAmt = 12;
 	int selectedMedIndex;
@@ -108,6 +108,14 @@ public class Parser : MonoBehaviour {
     private Transform bottom;
     private float altSize;
 
+    // Test mode
+    private bool isTestMode = false;
+    public GameObject testPanel;
+    private int testModeCase = 0;
+    private float arrowKeyTimer = 0;
+    private float arrowSpeed = 0.8f;
+    private int easy_total = 0, normal_total = 0, hard_total = 0, max_total = 0;
+
     // Debug
     int debugTestCaseNum = 47;
 
@@ -131,7 +139,27 @@ public class Parser : MonoBehaviour {
         for(int i = 0; i<problemNum; i++) {
             toggleList[i]=chooseP.transform.Find("p" + (i+1).ToString()).GetComponent<Toggle>();
         };
-        
+
+        // Test mode UI init
+        string s = File.ReadAllText(Application.dataPath + "/Resources/easy/patient.txt", Encoding.UTF8);
+        string[] l = s.Split("\n"[0]);
+        easy_total = l.Length;
+        testPanel.transform.Find("easy_case_total").GetComponent<Text>().text = easy_total.ToString();
+
+        s = File.ReadAllText(Application.dataPath + "/Resources/normal/patient.txt", Encoding.UTF8);
+        l = s.Split("\n"[0]);
+        normal_total = l.Length;
+        testPanel.transform.Find("normal_case_total").GetComponent<Text>().text = normal_total.ToString();
+
+        s = File.ReadAllText(Application.dataPath + "/Resources/hard/patient.txt", Encoding.UTF8);
+        l = s.Split("\n"[0]);
+        hard_total = l.Length;
+        testPanel.transform.Find("hard_case_total").GetComponent<Text>().text = hard_total.ToString();
+
+        max_total = (easy_total > normal_total) ? ((hard_total > easy_total) ? hard_total : easy_total) : normal_total;
+        max_total--;
+
+        testPanel.SetActive(false);
     }
 
 	void updateMed(List<Medicine> list){
@@ -205,6 +233,9 @@ public class Parser : MonoBehaviour {
 	}
 
 	void loadcase(){
+        if (isTestMode)
+            testPeriod = 1;
+
 		int caseNum = plist.Count;
 		if(testedRecord.Count == testPeriod){
 			Debug.Log("All Tested!");
@@ -213,13 +244,14 @@ public class Parser : MonoBehaviour {
 		}
 		string fname = "/testcase/testcase_";
 		int ranIndex = casePicker(caseNum);
-		string ran = (ranIndex+1).ToString();
-		string fileName = fname + ran;
+        Debug.Log(isTestMode);
+		int ran = isTestMode? (testModeCase > caseNum? caseNum : testModeCase) : ranIndex;
+		string fileName = fname + (ran+1).ToString();
 		string s = File.ReadAllText(Application.dataPath + "/Resources/" + difficulty + fileName + ".txt", Encoding.UTF8);
 		string[] l = s.Split ("\n"[0]);
-		patientProfileUpdate(plist[ranIndex]);
+		patientProfileUpdate(plist[ran]);
 		tcase = new TestCase ();
-		tcase.index = ranIndex;
+		tcase.index = ran;
         tcase.isBad = false;
         tcase.correct = false;
 		for (int i = 1; i < l.Length-1; i++) {          //-1 because last line is empty
@@ -559,7 +591,77 @@ public class Parser : MonoBehaviour {
 
 	private void Update()
 	{
+        // Timer
 		if(startTimer) timer += Time.deltaTime;
-	}
+
+
+        // Test mode 
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            testPanel.SetActive(true);
+            testPanel.GetComponentInChildren<Toggle>().isOn = isTestMode = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            arrowKeyTimer = 0;
+            arrowSpeed = 0.8f;
+            Text caseTxt = testPanel.GetComponentInChildren<Text>();
+            testModeCase = testModeCase > 0 ? testModeCase-1 : 0;
+            caseTxt.text = "case:  " + (testModeCase + 1).ToString("D2");
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            // Press arrow continously
+            if (arrowKeyTimer > arrowSpeed)
+            {
+                arrowKeyTimer = 0;
+                Text caseTxt = testPanel.GetComponentInChildren<Text>();
+                testModeCase = testModeCase > 0 ? testModeCase - 1 : 0;
+                caseTxt.text = "case:  " + (testModeCase + 1).ToString("D2");
+            }
+            else
+            {
+                arrowKeyTimer += Time.deltaTime;
+                if (arrowSpeed > 0.01f)
+                {
+                    arrowSpeed -= 0.79f / 2f * Time.deltaTime;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            arrowKeyTimer = 0;
+            arrowSpeed = 0.8f;
+            Text caseTxt = testPanel.GetComponentInChildren<Text>();
+            testModeCase = testModeCase < max_total ? testModeCase + 1 : max_total;
+            caseTxt.text = "case:  " + (testModeCase+1).ToString("D2");
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            // Press arrow continously
+            if (arrowKeyTimer > arrowSpeed)
+            {
+                arrowKeyTimer = 0;
+                Text caseTxt = testPanel.GetComponentInChildren<Text>();
+                testModeCase = testModeCase < max_total ? testModeCase + 1 : max_total;
+                caseTxt.text = "case:  " + (testModeCase + 1).ToString("D2");
+            }
+            else
+            {
+                arrowKeyTimer += Time.deltaTime;
+                if (arrowSpeed > 0.01f)
+                {
+                    arrowSpeed -= 0.79f / 2f * Time.deltaTime;
+                }
+            }
+        }
+    }
+
+    public void SwitchTestMode(bool b)
+    {
+        isTestMode = testPanel.GetComponentInChildren<Toggle>().isOn;
+    }
 }
 
