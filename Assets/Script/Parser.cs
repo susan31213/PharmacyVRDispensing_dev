@@ -25,6 +25,7 @@ public class Medicine {
 	public string usage;
 	public string amt_per_time;
 	public string unit;
+    public string unit2;
 	public string freq;
 	public string day;
 	public string amt;
@@ -182,7 +183,7 @@ public class Parser : MonoBehaviour {
 				textList[2].text = list[i].amt_per_time + " " + list[i].unit;
 				textList[3].text = list[i].freq;
 				textList[4].text = "x"+list[i].day;
-				textList[5].text = list[i].amt + " " + list[i].unit;
+				textList[5].text = list[i].amt + " " + (list[i].unit2 == ""? list[i].unit : list[i].unit2);
 				buttonList [i].interactable = true;
 			}
 		}
@@ -244,7 +245,6 @@ public class Parser : MonoBehaviour {
 		}
 		string fname = "/testcase/testcase_";
 		int ranIndex = casePicker(caseNum);
-        Debug.Log(isTestMode);
 		int ran = isTestMode? (testModeCase > caseNum? caseNum : testModeCase) : ranIndex;
 		string fileName = fname + (ran+1).ToString();
 		string s = File.ReadAllText(Application.dataPath + "/Resources/" + difficulty + fileName + ".txt", Encoding.UTF8);
@@ -261,7 +261,18 @@ public class Parser : MonoBehaviour {
 			m.medName = data [2];
 			m.usage = data[3];
 			m.amt_per_time = data[4];
-			m.unit = data[5];
+            // check unit2 exist
+            int unit2_idx = data[5].LastIndexOf("/");
+            if(unit2_idx != -1)
+            {
+                m.unit = data[5].Substring(0, unit2_idx);
+                m.unit2 = data[5].Substring(unit2_idx + 1);
+            }
+            else
+            {
+                m.unit = data[5];
+                m.unit2 = "";
+            }
 			m.freq = data[6];
 			m.day = data[7];
 			m.amt = data[8];
