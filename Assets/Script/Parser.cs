@@ -100,8 +100,7 @@ public class Parser : MonoBehaviour {
 	public Text resultTxt;
 	public Text checkpointTxt;
 	private string difficulty;
-	private float timer = 0;
-	private bool startTimer = false;
+	public Timer timer;
 
     //medPanel
     private RectTransform canvTrans;
@@ -569,9 +568,8 @@ public class Parser : MonoBehaviour {
     }
 
 	public void showCheckpoint() {	// old reload()
-		tcase.timer = timer;
+		tcase.timer = timer.EndCount();
         Debug.Log(timer);
-		startTimer = false;
 		answerCheck("single");
 	}
 
@@ -592,20 +590,13 @@ public class Parser : MonoBehaviour {
 		loadPatient();
 		dp.initMedList();
 		loadcase();
-		setTimer();
+        timer.StartCount();
 	}
 
 	public TestCase NowTestCase() {return tcase;}
 
-	public void setTimer()
-    { timer = 0; startTimer = true; Debug.Log("timer start"); }
-
-	private void Update()
-	{
-        // Timer
-		if(startTimer) timer += Time.deltaTime;
-
-
+    private void Update()
+    {
         // Test mode 
         if (Input.GetKeyDown(KeyCode.F2))
         {

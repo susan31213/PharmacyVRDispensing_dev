@@ -3950,6 +3950,46 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 101206125}
+--- !u!1 &101682506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 101682508}
+  - component: {fileID: 101682507}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &101682507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 101682506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0657da0252c305840a40b6fe3f8ec6ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &101682508
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 101682506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2037742083}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &101803403 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1093324601632778, guid: 9e147711e8190614da63f5277e7729e2,
@@ -41899,6 +41939,7 @@ MonoBehaviour:
   dp: {fileID: 462731139}
   resultTxt: {fileID: 1836553274}
   checkpointTxt: {fileID: 479044524}
+  timer: {fileID: 101682507}
   testPanel: {fileID: 702327441}
 --- !u!1 &838240638
 GameObject:
@@ -46473,8 +46514,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 834894100}
-        m_MethodName: setTimer
+      - m_Target: {fileID: 101682507}
+        m_MethodName: StartCount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -100043,6 +100084,7 @@ Transform:
   - {fileID: 139403364}
   - {fileID: 1190146384}
   - {fileID: 1572524678}
+  - {fileID: 101682508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

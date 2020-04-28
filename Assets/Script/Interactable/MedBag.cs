@@ -10,7 +10,7 @@
 		GameMaster gameMaster;
 		VRTK_InteractGrab leftHand, rightHand;
 		Transform medInBag = null;
-		Text amtTxt;
+		public Text amtTxt;
 
 		public string index = "-1", amount = "0";
 
@@ -18,7 +18,7 @@
 			gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
 			leftHand = GameObject.Find("LeftController").GetComponent<VRTK_InteractGrab>();
 			rightHand = GameObject.Find("RightController").GetComponent<VRTK_InteractGrab>();
-			amtTxt = transform.Find("Amount").GetComponentInChildren<Text>();
+			//amtTxt = transform.Find("Amount").GetComponentInChildren<Text>();
 		}
 
 		void Update() {
